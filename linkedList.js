@@ -3,18 +3,21 @@
  * @description  Main Module
  * @return {Object} an object exposing methods to be used to manipulate a linked list
  */
+
 function linkedListGenerator(){
   var head = null;
   var tail = null;
+  var module = {};
 
-  return {
-    getHead : function(){
+    module.getHead = function(){
       return head;
-    },
-    getTail : function(){
+    };
+
+    module.getTail =function(){
       return tail;
-    },
-    add : function(value){
+    };
+
+    module.add = function(value){
       var newNode = {
         value : value,
         next : null
@@ -30,35 +33,32 @@ function linkedListGenerator(){
 
       return newNode;
 
-    },
-    remove : function(thisNode){
-      var start = head;
+    };
+
+    module.remove = function(position){
       var count = 0;
 
-      while(start.next !== null || (start === tail)){
-        count = count + 1;
+      while(start.next !== null){ //|| (start === tail)){
+        count += 1;
         start = start.next;
-
+        console.log("This is the start",start);
       } //Should return false if position is outside of length
       var listLength = count;
-      if(listLength < thisNode){
+      console.log("listLength",listLength);
+      if(listLength <= position){
         return false;
       }
 
-      var i = 0;
-      while(i < thisNode){
-        if(start === tail){
-          return false;
-        }
-        start = start.next;
-        i++;
-      }
-      var prevNode = start(1)-1;
-      console.log("HELLOOO",prevNode);
-        prevNode.next = start;
+      var getNode = linkList.get(position);
+      console.log("IM A FUNCTION",linkList.get());
+      var prevNode = linkList.get(position);
+      console.log("herrrooooo", prevNode);
+      prevNode = tail;
+      console.log(prevNode);
 
-    },
-    get : function(position){
+    };
+
+    module.get = function(position){
       var start = head;
       var i = 0;
       while(i < position){
@@ -70,14 +70,13 @@ function linkedListGenerator(){
 
       }
       return start;
-    },
-    insert : function(){}
-  };
+    };
 
+    module.insert = function(){};
 
-
+  return module;
 }
 
-//var linkList = linkedListGenerator();
+var linkList = linkedListGenerator();
 
 
