@@ -31,20 +31,41 @@ function linkedListGenerator(){
       return newNode;
 
     },
-    remove : function(){},
-    get : function(position){
+    remove : function(thisNode){
       var start = head;
-      var i = 0;
+      var count = 0;
 
-      console.log("is it????", i < position);
-      console.log("WAT ARE YOU DOOOIN",position);
-      while(i < position){
-        console.log("this is IIII",start === tail);
+      while(start.next !== null || (start === tail)){
+        count = count + 1;
+        start = start.next;
+
+      } //Should return false if position is outside of length
+      var listLength = count;
+      if(listLength < thisNode){
+        return false;
+      }
+
+      var i = 0;
+      while(i < thisNode){
         if(start === tail){
           return false;
         }
         start = start.next;
-        console.log("start",start);
+        i++;
+      }
+      var prevNode = start(1)-1;
+      console.log("HELLOOO",prevNode);
+        prevNode.next = start;
+
+    },
+    get : function(position){
+      var start = head;
+      var i = 0;
+      while(i < position){
+        if(start === tail){
+          return false;
+        }
+        start = start.next;
         i++;
 
       }
