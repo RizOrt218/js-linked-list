@@ -36,6 +36,11 @@ function linkedListGenerator(){
     };
 
     module.remove = function( index ){
+      var curNode = this.get( index );
+      var prevNode = this.get( index - 1 );
+
+      prevNode.next = curNode.next;
+
       var count = 0;
 
       while(start.next !== null){ //|| (start === tail)){
@@ -49,12 +54,12 @@ function linkedListGenerator(){
         return false;
       }
 
-      var getNode = linkList.get(index);
-      console.log("IM A FUNCTION",linkList.get());
-      var prevNode = linkList.get(index);
-      console.log("herrrooooo", prevNode);
-      prevNode = tail;
-      console.log(prevNode);
+      // var getNode = linkList.get(index);
+      // console.log("IM A FUNCTION",linkList.get());
+      // var prevNode = linkList.get(index);
+      // console.log("herrrooooo", prevNode);
+      // prevNode = tail;
+      // console.log(prevNode);
 
     };
 
