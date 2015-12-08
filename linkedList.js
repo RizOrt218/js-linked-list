@@ -35,33 +35,33 @@ function linkedListGenerator(){
 
     };
 
-    module.remove = function(position){
+    module.remove = function( index ){
       var count = 0;
 
       while(start.next !== null){ //|| (start === tail)){
         count += 1;
         start = start.next;
         console.log("This is the start",start);
-      } //Should return false if position is outside of length
+      } //Should return false if index is outside of length
       var listLength = count;
       console.log("listLength",listLength);
-      if(listLength <= position){
+      if(listLength <= index){
         return false;
       }
 
-      var getNode = linkList.get(position);
+      var getNode = linkList.get(index);
       console.log("IM A FUNCTION",linkList.get());
-      var prevNode = linkList.get(position);
+      var prevNode = linkList.get(index);
       console.log("herrrooooo", prevNode);
       prevNode = tail;
       console.log(prevNode);
 
     };
 
-    module.get = function(position){
+    module.get = function( index ){
       var start = head;
-      var i = 0;
-      while(i < position){
+      var position = 0;
+      while( position < index ){
         if(start === tail){
           return false;
         }
