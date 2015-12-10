@@ -7,79 +7,111 @@
 function linkedListGenerator(){
   var head = null;
   var tail = null;
-  var module = {};
+  var length = 0;
 
-    module.getHead = function(){
+  return {
+
+    //POINTS TO HEAD
+    getHead : function(){
       return head;
-    };
+    },
 
-    module.getTail =function(){
+    //POINTS TO TAIL
+    getTail : function(){
       return tail;
-    };
+    },
 
-    module.add = function(value){
+    //CREATED NEW NODE ADD TO LINKED LIST
+    add : function( value ){
+
       var newNode = {
         value : value,
         next : null
       };
 
-      if(head === null && tail === null){
+      if( head === null && tail === null ){
         head = newNode;
         tail = newNode;
       } else {
         tail.next = newNode;
         tail = newNode;
       }
-
+      length++;
       return newNode;
+    },
 
-    };
+    //GOES THROUGH LINKED LIST AND RETURNS THE NODE
+    get : function( index ){
+      var start = this.getHead();
+      var currentNode = start;
+      var position = 0;
 
-    module.remove = function( index ){
+      while( position < index ){
+        if( currentNode === tail ){
+          return false;
+        }
+        currentNode = currentNode.next;
+        position++;
+      }
+      return currentNode;
+    },
+
+    //GOES THROUGH LINKED LIST AND REMOVE DESIRED NODE
+    remove : function( index ){
       var curNode = this.get( index );
       var prevNode = this.get( index - 1 );
 
-      prevNode.next = curNode.next;
-
-      var count = 0;
-
-      while(start.next !== null){ //|| (start === tail)){
-        count += 1;
-        start = start.next;
-        console.log("This is the start",start);
-      } //Should return false if index is outside of length
-      var listLength = count;
-      console.log("listLength",listLength);
-      if(listLength <= index){
+    //CASES TO WORK WITH
+    //if length of linked list is less than index
+    //if there is only one node in linked list
+    //if index is 0 then assign the head to be index
+    //if index is tail. Assign tail to prevNode
+    //if index is between head and tail. Have head point to tail.
+      if( length <= index ){
         return false;
       }
-
-      // var getNode = linkList.get(index);
-      // console.log("IM A FUNCTION",linkList.get());
-      // var prevNode = linkList.get(index);
-      // console.log("herrrooooo", prevNode);
-      // prevNode = tail;
-      // console.log(prevNode);
-
-    };
-
-    module.get = function( index ){
-      var start = head;
-      var position = 0;
-      while( position < index ){
-        if(start === tail){
-          return false;
+      if( index === 0 && length === 1 ){
+        head = null;
+        tail = null;
+      } else {
+        if( index === 0 ){
+          head = curNode.next;
+        } else if( index === length - 1 ){
+          tail = prevNode;
+          prevNode.next = null;
+          } else {
+            prevNode.next = curNode.next;
         }
-        start = start.next;
-        i++;
+      }
+      length--;
+    },
+
+    //GOES THROUGH OUR LINKED LIST AND INSERT NEW NODE
+    insert : function( value, index ){
+      var nodeWhereNewNodeWillReplace = this.get( index );
+      var prevNode = this.get( index - 1 );
+      var tempNode;
+
+      var newNode = {
+        value : value,
+        next : null
+      };
+
+      //if index is greater than length or index is less than 0
+      //if index is 0, index becomes head
+      //if index is inserted between head and tail, point head to index
+        // ... & index.next point to tail
+      //if head is tail, & index is 0, index becomes head and head.next is null
+
+      if( index >= length || index < 0 ){
 
       }
-      return start;
-    };
 
-    module.insert = function(){};
+    }
+  };
 
-  return module;
+
+
 }
 
 var linkList = linkedListGenerator();
