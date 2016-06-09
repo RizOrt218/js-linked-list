@@ -104,7 +104,7 @@ function linkedListGenerator(){
       //if head is tail, & index is 0, index becomes head and head.next is null
 
       if( index >= length || index < 0 ){
-
+        return false;
       }
 
     }
